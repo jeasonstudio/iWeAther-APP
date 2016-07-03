@@ -1,0 +1,62 @@
+.mui-content,.mui-content-padded{
+	height: 100%;
+	  background-image:-webkit-linear-gradient(to top left, #006699, #99CCFF);
+	  background-image:-moz-linear-gradient(to top left, #006699, #99CCFF);
+	  background-image:-o-linear-gradient(to top left, #006699, #99CCFF);
+	  background-image:-webkit-gradient(linear, 0 0, 100% 100%, from(#006699), to(#99CCFF));
+      background-image:linear-gradient(to top left, #006699, #99CCFF);
+}
+
+#menu{
+	position: fixed;
+	margin: auto;
+	right: 30px;
+	bottom: 30px;
+}
+
+.mui-icon{
+	font-weight: 900!important;
+	color: #fff;
+}
+
+#weatherIcon{
+	margin: 120px auto 20px auto;
+	width: 200px;
+	height: 200px;
+}
+
+.citytem{
+	color: #fff;
+	text-align: center;
+	font-weight: 800;
+}
+
+#text{
+	font-size: 1.8em;
+}
+#tem{
+	font-size: 4.5em;
+}
+#city{
+	font-size: 1em;
+}
+
+.toTopLeft {
+  background-image:-webkit-linear-gradient(to top left, orange, green);
+  background-image:linear-gradient(to top left,orange,green);
+}
+
+.footer{
+	position: relative;
+	margin: auto;
+	bottom: 10px;
+	left: auto;
+	right: auto;
+	color: #CCCCCC;
+	text-align: center;
+}
+.menutext{
+	margin: 100px auto 480px auto;
+	color: #CCCCCC;
+	text-align: center;
+}
