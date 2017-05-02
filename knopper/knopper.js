@@ -63,13 +63,13 @@ ElementK.prototype.render = function () {
 function set(target, key, value, receiver) {
     const result = Reflect.set(target, key, value, receiver);
     var dataSet = receiver || target;
-    if (dataSet.__bindings[key] && isArray(dataSet.__bindings[key])) {
-        debugger
-        let _this = target.__bindings[key][1].knopper
-        let node = target.__bindings[key][1].el
-        let arr = target.__bindings[key]
-        // renderRepeatList(node, arr, key, _this)
-    }
+    // if (dataSet.__bindings[key] && isArray(dataSet.__bindings[key])) {
+    //     debugger
+    //     let _this = target.__bindings[key][1].knopper
+    //     let node = target.__bindings[key][1].el
+    //     let arr = target.__bindings[key]
+    //     // renderRepeatList(node, arr, key, _this)
+    // }
     dataSet.__bindings[key].forEach(item => {
         item.el[item.attr] = item.elementValue = value;
     });
@@ -112,14 +112,9 @@ function renderRepeatList(oNode, arr, name, _this) {
     let thisNode = repeatStartComment
     let virtualRepeatDom = []
     for (let index = 0; index < arr.length; index++) {
-        // appendAfter(thisNode, oNode.cloneNode(true))
-        // thisNode = thisNode.nextSibling
-        virtualRepeatDom.push(thisNode)
-    }
-    if (_this._data.__bindings[name]) {
-        _this._data.__bindings[name].push(new Directive(thisNode, _this, 'k-repeat', _this.data[name][index]));
-    } else {
-        _this._data.__bindings[name] = [new Directive(thisNode, _this, 'k-repeat', _this.data[name][index])];
+        appendAfter(thisNode, oNode.cloneNode(true))
+        thisNode = thisNode.nextSibling
+        // virtualRepeatDom.push(new ElementK())
     }
 }
 
@@ -143,11 +138,6 @@ function kRepeat(node, _this) {
 
     console.log(node)
     renderRepeatList(node, _this.data[attributeValue], attributeValue, _this)
-}
-
-// FP switcher
-const switcher = map => (type, ...args) => {
-    return map[type] !== undefined ? map[type](...args) : undefined
 }
 
 /**

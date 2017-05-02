@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>PolarTest</title>
-    <script src="../utils/knopper.js"></script>
+    <script src="knopper.js"></script>
 </head>
 
 <body>
@@ -33,9 +33,8 @@
             methods: {
                 test: function (e, addNumber) {
                     // console.log("e:", e);
-                    // this.data.age += Number(addNumber);
-                    this.data.list = [1, 2]
-                    console.log(this.data.list)
+                    this.data.age += Number(addNumber);
+                    console.log(this)
                 }
             }
         });
