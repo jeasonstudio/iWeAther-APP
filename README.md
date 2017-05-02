@@ -17,3 +17,7 @@
 3. 可以使用任何你熟悉的语言开发
 4. 完成事件: 1周 以内
 5. Do the best as much as you can.
+
+## 设计原型见下图
+
+![](./weather-assert.png)
