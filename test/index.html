@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PolarTest</title>
+    <script src="../utils/knopper.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <form>
+            <label>name:</label>
+            <input k-model="name" />
+        </form>
+        <div>name:{{name}} age:{{age}}</div>
+        <i>note:{{note}}</i><br/>
+        <button k-click="test(2)">button1</button>
+        <p k-repeat="item in list" k-click="test(2)" id="{{name}}">WTF <span>aaa：{{name}}</span></p>
+    </div>
+
+    <script>
+        // debugger
+        var myKnopper = new Knopper({
+            el: "#app",
+            data: {
+                name: "Jeason",
+                age: 20,
+                note: "Student of USTB",
+                list: [1, 2, [], {}]
+            },
+            methods: {
+                test: function (e, addNumber) {
+                    // console.log("e:", e);
+                    // this.data.age += Number(addNumber);
+                    this.data.list = [1, 2]
+                    console.log(this.data.list)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

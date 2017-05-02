@@ -21,3 +21,11 @@
 ## 设计原型见下图
 
 ![](./weather-assert.png)
+
+## 简要说明
+
+### 实现了一个简单的 MVVM 库
+
+因为不想使用 AngularJS、VueJS or ReactJS 等现成库或框架，但又需要其部分功能，于是自己实现了一个类似 Vue 的 MVVM 框架，详见 [knopper.js](utils/knopper.js)。
+目前实现了 k-module, k-click 的双向绑定和 k-repeat 的单向绑定。将来可能会实现 k-if/k-on 等。
+`knopper.js` 名字是因为在写它的时候正在吃 `knoppers` 饼干，主要原理基于 `ES2016 的 Proxy 和 Reflect`。
