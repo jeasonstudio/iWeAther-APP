@@ -16,12 +16,11 @@
         </form>
         <div>name:{{name}} age:{{age}}</div>
         <i>note:{{note}}</i><br/>
-        <button k-click="test(2)">button1</button>
-        <p k-repeat="item in list" k-click="test(2)" id="{{name}}">WTF <span>aaa：{{name}}</span></p>
+        <button k-click="test(2)">Add Age</button>
+        <p k-repeat="item in list">Who am I : <span>{{name}}</span></p>
     </div>
 
     <script>
-        // debugger
         var myKnopper = new Knopper({
             el: "#app",
             data: {

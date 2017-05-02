@@ -106,7 +106,7 @@ function isArray(o) {
 }
 
 function renderRepeatList(oNode, arr, name, _this) {
-    debugger
+    // debugger
     let repeatStartComment = getTagCommentNode("K-REPEAT START WHERE THE ARRAY IS : " + name)
     let repeatEndComment = getTagCommentNode("K-REPEAT END WHERE THE ARRAY IS : " + name)
     let thisNode = repeatStartComment
