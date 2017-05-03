@@ -1,75 +1,37 @@
-# Webpack Everything
-This is a vue-cli template that comes with webpack, server side rendering (SSR), route level code splitting, and progressive web app (PWA) capabilities. This template requires SSL in production in order to function properly.
+# 百度云应聘笔试题
 
-## Lighthouse Score
-![Lighthouse Score](https://raw.githubusercontent.com/Narkoleptika/webpack-everything/master/lighthouse.png)
+## 题目内容及要求
 
-[Lighthouse Score for /](https://googlechrome.github.io/lighthouse/viewer/?gist=1714c891a643c7a55ff24361b7c1a270)
+> 题目内容
 
-![Lighthouse Score](https://raw.githubusercontent.com/Narkoleptika/webpack-everything/master/lighthouse.png)
+小明最近买了一个非主流的手机，所以一直没有找到一个符合自己需求的 天气 APP，无奈之下只好自己动手开发一个。幸好手机上有个功能强劲的浏览器，小明仔细地考虑了一下，列举了一些最想要的功能:
+ 1. 首先应该找到一些提供天气信息的网站把需要的数据抓取下来
+ 2. 可以清晰地了解到未来几天气温的变化情况。
+ 3. 希望气温的变化情况能够直观的以 曲线图 的形式展示出来。
+ 4. 考虑到后续的升级和维护，小明决定做一个 Web App ，这样子的话，可以方便的在PC上面使用这个应用。
 
-[Lighthouse Score for /test](https://googlechrome.github.io/lighthouse/viewer/?gist=b04c8377cf5bdd07a0d4ae6b5c0f0329)
+> 开发需求
 
+1. 代码可以托管在github, gitcafe, google code等相关的网站
+2. 网站最终可以托管到BAE，SAE，GAE等环境
+3. 可以使用任何你熟悉的语言开发
+4. 完成事件: 1周 以内
+5. Do the best as much as you can.
 
-## Preprocessors
-Choose from
-1. Stylus
-2. Scss
+## 设计原型见下图
 
-## Geting Started
-```bash
-npm install -g vue-cli || yarn global add vue-cli
-vue init narkoleptika/webpack-everything example-project
-cd example-project
-npm install || yarn
-npm run dev
-```
-Dev server with SSR and HMR will run by default at `http://localhost:3000`
+![](./weather-assert.png)
 
-## Production
-```bash
-npm run prod
-```
+## 简要说明
 
-### SSL
-You should use SSL. ___This template assumes the use of encryption by default___. You will need to set the following environment variables to run production.
-* `SSL` - SSL port -- default: `3001`
-* `CERT` - Path to the ssl certificate -- default: `./private/server.crt`
-* `KEY` - Path to the server key -- default: `./private/server.key`
+### 实现了一个简单的 MVVM 库
 
-### Testing SSL
-You can self sign some certificates for localhost (Which are handy to have for testing SSL in general)
-```bash
-mkdir private
-cd private
-openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-openssl rsa -passin pass:x -in server.pass.key -out server.key
-rm server.pass.key
-openssl req -new -key server.key -out server.csr
-openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt
-```
+因为不想使用 AngularJS、VueJS or ReactJS 等现成库或框架，但又需要其部分功能，于是自己实现了一个类似 Vue 的 MVVM 框架，详见 [knopper.js](utils/knopper.js)。
 
-It is a good idea to test production in incognito mode to avoid troubles clearing the 301 redirect later.
+目前实现了 k-module, k-click 的双向绑定和 k-repeat 的单向绑定。将来可能会实现 k-if/k-on 等。
 
-### No SSL
-If you really hate privacy you may set `NO_SSL`.
+`knopper.js` 名字是因为在写它的时候正在吃 `knoppers` 饼干，主要原理基于 `ES2016 的 Proxy 和 Reflect`。
 
-Alternatively, you can run
-```bash
-npm run prod--no-ssl
-```
+### 天气 API
 
-__Please note:__ Service workers require ssl in order to work. If you don't use encryption, you will lose offline capabilities in production.
-
-## Environment Vars
-* `NODE_ENV`
-* `PORT` - default: `3000`
-* `HOST` - default: `0.0.0.0`
-* `SSL` - default: `3001`
-* `KEY` - default: `./private/server.key`
-* `CERT` - default: `./private/server.crt`
-* `NO_SSL`
-
-## Thanks
-* [Vue](https://vuejs.org/)
-* [Vuetify](https://vuetifyjs.com/)
+6fcd1f55dc9d4c059b6ae73ec24f2ce2

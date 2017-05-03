@@ -7,11 +7,11 @@
         display flex
         flex-direction column
         min-height 100vh
-        max-width 1024px
+        // max-width 1024px
         margin 0 auto
         shadow 4
         header
-            background-color primary-color
+            background-color secondary-color
             color white
             display flex
             font-size 1.25rem
@@ -22,25 +22,16 @@
             shadow 2
 
             .brand
-                font-family serif
-                font-size 2rem
+                margin-left 20px
+                font-size 1.8rem
                 flex 0 1 auto
                 color white
                 text-decoration none
 
             nav
-                font-size 0
-                flex 0 1 auto
+                // font-size 0
+                // flex 0 1 auto
 
-                a
-                    color white
-                    display inline-block
-                    font-size 1.25rem
-                    padding 0 10px
-                    text-decoration none
-                    &:hover
-                    &.router-link-active
-                        background-color secondary-color
         main
         footer
             padding 10px
@@ -48,10 +39,12 @@
             font-size 1.3rem
             flex 1 0 auto
         footer
-            background-color secondary-color
-            font-size 0.8rem
-            color white
+            background-color white
+            font-size 1rem
+            color black
             text-align center
+            a 
+                color black
 
     .route-enter-active
     .route-leave-active
@@ -63,10 +56,11 @@
 <template>
     <div class="app" id="app">
         <header>
-            <router-link :to="{name: 'Home'}" class="brand">iWeAther-APP</router-link>
+            <router-link :to="{name: 'Home'}" class="brand">WeAther</router-link>
             <nav>
-                <router-link :to="{name: 'Home'}" exact>Home</router-link>
-                <router-link :to="{name: 'Test'}" exact>Test</router-link>
+                <!--<router-link :to="{name: 'Home'}" exact>Home</router-link>
+                <router-link :to="{name: 'Test'}" exact>Test</router-link>-->
+                <span>5月4号 农历二月初五</span>
             </nav>
         </header>
         <main>
@@ -75,7 +69,7 @@
             </transition>
         </main>
         <footer>
-            &copy;iWeAther-APP 2017
+            Copyright &copy; 2015-2017 <a href="https://github.com/jeasonstudio">JeasonStudio</a>
         </footer>
     </div>
 </template>
