@@ -53,7 +53,7 @@
         
         @media only screen and (max-width: 1024px)
             .today 
-                width 80%
+                width 100%
             .after-today
                 display none
             #tem-week
@@ -62,7 +62,7 @@
 </style>
 <template>
     <div class="home" id="home">
-        <div class="week-dailys today">
+        <div class="week-dailys today" id="sessionone">
             <div class="main-tmp"><span v-text="now.tmp"></span> ℃</div>
             <div class="line"></div>
             <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
@@ -70,7 +70,7 @@
         <!--<div class="week-dailys after-today"></div>
         <div class="week-dailys after-today">s</div>
         <div class="week-dailys after-today">a</div>-->
-        <div class="detail">
+        <div class="detail" id="sessiontwo">
             <div id="tem-week"></div>
             <div class="detail-text">
                 <p><span></span><span></span></p>
@@ -107,7 +107,6 @@ export default {
         }
     },
     preFetch() {
-        console.log(window.screen.height)
         return this.methods.meta()
     },
     beforeMount() {
@@ -115,6 +114,14 @@ export default {
     },
     created: function () {
         this.getWeathers();
+    },
+    activated: function () {
+        let screenHeight = window.screen.height;
+        document.getElementById('sessionone').style.height = screenHeight + 'px';
+        // document.getElementsByClassName('week-dailys')[0].style.height = screenHeight + 'px';
+        // document.getElementsByClassName('detail')[0].style.height = screenHeight + 'px';
+        // console.log(document.getElementsByClassName('detail'))
+
     },
     methods: {
         meta: () => ({

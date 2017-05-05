@@ -11,7 +11,6 @@
         margin 0 auto
         shadow 4
 
-        main
         footer
             padding 10px
         main
