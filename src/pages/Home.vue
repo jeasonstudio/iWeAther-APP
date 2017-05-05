@@ -59,7 +59,6 @@
             #tem-week
                 width 90%
 
-
 </style>
 <template>
     <div class="home" id="home">
@@ -68,9 +67,9 @@
             <div class="line"></div>
             <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
         </div>
-        <div class="week-dailys after-today"></div>
+        <!--<div class="week-dailys after-today"></div>
         <div class="week-dailys after-today">s</div>
-        <div class="week-dailys after-today">a</div>
+        <div class="week-dailys after-today">a</div>-->
         <div class="detail">
             <div id="tem-week"></div>
             <div class="detail-text">
@@ -90,12 +89,14 @@ export default {
     data() {
         return {
             "basic": {
-                "city": "北京",
+                "city": "北京"
             },
             "now": {
                 "cond": {
                     "txt": ''
                 }
+            },
+            "chartsOptions": {
             },
             "daily_forecast": [],
             "afterCalculater": {
@@ -106,6 +107,7 @@ export default {
         }
     },
     preFetch() {
+        console.log(window.screen.height)
         return this.methods.meta()
     },
     beforeMount() {
@@ -113,7 +115,6 @@ export default {
     },
     created: function () {
         this.getWeathers();
-        // console.log(this.$echarts);
     },
     methods: {
         meta: () => ({
@@ -123,20 +124,20 @@ export default {
         }),
         getWeathers: function () {
             let self = this
-            self.$http.get('/now').then(function (response) {
-                console.log(response.data.HeWeather5[0]);
+            self.$http.get('/now').then(response => {
                 self.$data.now = response.data.HeWeather5[0].now;
                 self.$data.basic = response.data.HeWeather5[0].basic;
-            }).catch(function (error) {
+            }).catch(error => {
                 throw new Error(error);
             })
 
-            self.$http.get('/forecast').then(function (response) {
-                console.log(response.data.HeWeather5[0]);
+            self.$http.get('/forecast').then(response => {
                 self.$data.daily_forecast = response.data.HeWeather5[0].daily_forecast;
-                self.calcuTems(self.$data.daily_forecast);
+            }).then(() => {
+                self.calcuTems(self.$data.daily_forecast)
+            }).then(() => {
                 self.renderCharts();
-            }).catch(function (error) {
+            }).catch(error => {
                 throw new Error(error);
             })
             console.log(self.$data)
@@ -175,52 +176,51 @@ export default {
                 },
                 series: [
                     {
-                        name: '最高气温',
-                        type: 'line',
-                        lineStyle: {
-                            normal: {
-                                // width: 10,
-                                type: 'solid',
-                                shadowColor: 'rgba(0, 0, 0, 0.5)',
-                                shadowBlur: 10
+                        "name": '最高气温',
+                        "type": 'line',
+                        "lineStyle": {
+                            "normal": {
+                                "width": 1,
+                                "color": '#f56a00',
+                                "type": 'solid',
+                                "shadowColor": 'rgba(0, 0, 0, 0.5)',
+                                "shadowBlur": 10
                             }
                         },
-                        smooth: true,
-                        data: self.$data.afterCalculater.maxTmps,
-                        // markPoint: {
-                        //     data: [
-                        //         { type: 'max', name: '最大值' },
-                        //         { type: 'min', name: '最小值' }
-                        //     ]
-                        // },
-                        markLine: {
-                            data: [
-                                { type: 'average', name: '平均值' }
+                        "areaStyle": {
+                            "normal": {
+                                "color": '#f56a00'
+                            }
+                        },
+                        "smooth": true,
+                        "data": self.$data.afterCalculater.maxTmps,
+                        "markLine": {
+                            "data": [
+                                { "type": 'average', "name": '平均值' }
                             ]
                         }
-                    },
-                    {
-                        name: '最低气温',
-                        type: 'line',
-                        lineStyle: {
-                            normal: {
-                                // width: 10,
-                                type: 'solid',
-                                shadowColor: 'rgba(0, 0, 0, 0.5)',
-                                shadowBlur: 10
+                    }, {
+                        "name": '最低气温',
+                        "type": 'line',
+                        "lineStyle": {
+                            "normal": {
+                                "width": 1,
+                                "color": '#108ee9',
+                                "type": 'solid',
+                                "shadowColor": 'rgba(0, 0, 0, 0.5)',
+                                "shadowBlur": 10
                             }
                         },
-                        smooth: true,
-                        data: self.$data.afterCalculater.minTmps,
-                        // markPoint: {
-                        //     data: [
-                        //         { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
-                        //     ]
-                        // },
-                        markLine: {
-                            data: [
-                                { type: 'average', name: '平均值' },
-
+                        "areaStyle": {
+                            "normal": {
+                                "color": '#108ee9'
+                            }
+                        },
+                        "smooth": true,
+                        "data": self.$data.afterCalculater.minTmps,
+                        "markLine": {
+                            "data": [
+                                { "type": 'average', "name": '平均值' },
                             ]
                         }
                     }
