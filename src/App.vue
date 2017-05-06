@@ -31,6 +31,10 @@
                 display flex
                 flex-flow column nowrap
                 color greyBlack-color
+                .sm-info
+                    text-align center
+                    font-size 1rem
+                    margin 10px
                 footer
                     padding 10px
                     font-size 1rem
@@ -50,9 +54,9 @@
                 <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
             </section>
             <section class="swiper-roll weather-details">
-                <div>asdasdasdas</div>
+                <div class="sm-info" v-text="now.tmp + '℃ ' + now.cond.txt"></div>
                 <footer>
-                    Copyright &copy; 2015-2017 <a href="https://github.com/jeasonstudio">JeasonStudio</a>
+                    Copyright &copy; 2015-2017 <a href="https://github.com/jeasonstudio"> JeasonStudio</a>
                 </footer>
             </section>
         </swiper>
