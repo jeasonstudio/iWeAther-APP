@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper" :class="[direction, {'dragging': dragging}]" @touchstart="_onTouchStart" @mousedown="_onTouchStart" @wheel="_onWheel">
+    <div class="swiper" :class="[direction, {'dragging': dragging}]" @touchstart.prevent="_onTouchStart($event)" @mousedown.prevent="_onTouchStart($event)" @wheel="_onWheel">
         <div class="swiper-wrap" ref="swiper-wrap" :style="{
             'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)',
             'transition-duration': transitionDuration + 'ms'
