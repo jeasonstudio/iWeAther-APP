@@ -5,7 +5,7 @@ Vue.use(Router)
 
 // Codesplit based on route
 const Home = ()=> System.import('pages/Home')
-const Test = ()=> System.import('pages/Test')
+// const Test = ()=> System.import('pages/Test')
 const NotFound = ()=> System.import('pages/NotFound')
 
 export default new Router({
@@ -23,10 +23,6 @@ export default new Router({
         path: '/',
         name: 'Home',
         component: Home
-    }, {
-        path: '/test',
-        name: 'Test',
-        component: Test
     }, {
         path: '*',
         name: 'NotFound',

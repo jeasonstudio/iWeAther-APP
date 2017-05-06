@@ -7,24 +7,35 @@
         justify-content center
         align-items center
         .detail 
-            height 625px
+            // height 625px
             width 100%
             #tem-week
                 width 100%
                 height 40%
                 margin 10px auto
             .detail-text
-                width 60%
-
+                p
+                    padding 0
+                    font-size 1.2rem
+                    display flex
+                    flex-flow row nowrap
+                    span
+                        padding 0 10px
+                        width 50%
+                        font-weight 200
+                    :first-child
+                        text-align right
+                width 100%
+                    
         .week-dailys 
             height 200px
             // background-color secondary-color
             width 12%
-            margin 10px 20px
+            // margin 10px 20px
             border-radius 10px
         .today 
             width 40%
-            height 635px
+            // height 635px
             .main-tmp
                 span
                     font-size 5rem
@@ -67,18 +78,16 @@
             <div class="line"></div>
             <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
         </div>
-        <!--<div class="week-dailys after-today"></div>
-        <div class="week-dailys after-today">s</div>
-        <div class="week-dailys after-today">a</div>-->
         <div class="detail" id="sessiontwo">
+            <p style="text-align: center; margin-bottom: -60px;">未来一周气温走势</p>
             <div id="tem-week"></div>
             <div class="detail-text">
-                <p><span></span><span></span></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p><span style="align-self: flex-end;">数据更新时间:</span><span v-text="basic.update.loc"></span></p>
+                <p><span>相对湿度:</span><span v-text="now.hum + ' %'"></span></p>
+                <p><span>体感温度:</span><span v-text="now.fl + ' ℃'"></span></p>
+                <p><span>能见度:</span><span v-text="now.vis + ' km'"></span></p>
+                <p><span>风向风力:</span><span v-text="now.wind.dir + now.wind.sc + '级' "></span></p>
+                <p><span>风速:</span><span v-text="now.wind.spd + ' kmph' "></span></p>
             </div>
         </div>
     </div>
@@ -89,9 +98,14 @@ export default {
     data() {
         return {
             "basic": {
-                "city": "北京"
+                "city": "北京",
+                "update": { "loc": "" }
             },
             "now": {
+                "hum": "",
+                "fl": "",
+                "vis": "",
+                "wind": {},
                 "cond": {
                     "txt": ''
                 }
@@ -112,16 +126,14 @@ export default {
     beforeMount() {
         this.$emit('view', this.meta())
     },
-    created: function () {
+    created() {
         this.getWeathers();
     },
-    activated: function () {
-        let screenHeight = window.screen.height;
-        document.getElementById('sessionone').style.height = screenHeight + 'px';
-        // document.getElementsByClassName('week-dailys')[0].style.height = screenHeight + 'px';
-        // document.getElementsByClassName('detail')[0].style.height = screenHeight + 'px';
-        // console.log(document.getElementsByClassName('detail'))
-
+    mounted() {
+        console.log('The Window Screen Height Is: ' + window.screen.height + 'px');
+        document.getElementById('sessionone').style.height = window.screen.height + 'px';
+        document.getElementById('sessiontwo').style.height = (window.screen.height - 40) + 'px';
+        return window.addEventListener('scroll', this.handleScroll)
     },
     methods: {
         meta: () => ({
@@ -164,31 +176,28 @@ export default {
             let self = this;
             let myChart = this.$echarts.init(document.getElementById('tem-week'));
             myChart.setOption({
-                title: {
-                    text: '未来一周天气状况'
+                "xAxis": {
+                    "type": 'category',
+                    "boundaryGap": false,
+                    "data": self.$data.afterCalculater.xDate
                 },
-                xAxis: {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: self.$data.afterCalculater.xDate
-                },
-                yAxis: {
-                    show: false,
-                    type: 'value',
-                    min: 'dataMin',
-                    max: 'dataMin',
-                    axisLabel: {
-                        formatter: '{value} °C'
+                "yAxis": {
+                    "show": false,
+                    "type": 'value',
+                    "min": 'dataMin',
+                    "max": 'dataMin',
+                    "axisLabel": {
+                        "formatter": '{value} °C'
                     }
                 },
-                series: [
+                "series": [
                     {
                         "name": '最高气温',
                         "type": 'line',
                         "lineStyle": {
                             "normal": {
                                 "width": 1,
-                                "color": '#f56a00',
+                                "color": '#f04134',
                                 "type": 'solid',
                                 "shadowColor": 'rgba(0, 0, 0, 0.5)',
                                 "shadowBlur": 10
@@ -196,7 +205,7 @@ export default {
                         },
                         "areaStyle": {
                             "normal": {
-                                "color": '#f56a00'
+                                "color": '#f04134'
                             }
                         },
                         "smooth": true,
@@ -212,7 +221,7 @@ export default {
                         "lineStyle": {
                             "normal": {
                                 "width": 1,
-                                "color": '#108ee9',
+                                "color": '#7265e6',
                                 "type": 'solid',
                                 "shadowColor": 'rgba(0, 0, 0, 0.5)',
                                 "shadowBlur": 10
@@ -220,7 +229,7 @@ export default {
                         },
                         "areaStyle": {
                             "normal": {
-                                "color": '#108ee9'
+                                "color": '#7265e6'
                             }
                         },
                         "smooth": true,
@@ -233,10 +242,10 @@ export default {
                     }
                 ]
             });
-
-            console.log(myChart)
+        },
+        handleScroll: function (e) {
+            // Do Some Thing
         }
-
     }
 }
 </script>
