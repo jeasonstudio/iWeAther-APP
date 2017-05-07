@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["dist/0.5a5435519fcad33bdf59.js","27eb140801d68d68a920dce508cddb6e"],["dist/1.fcfc140d324d5b77aa95.js","57f3af29f22d600dee4cd6124232294d"],["dist/app.0768811b0519ee520562.js","218eeb5cf8a848f6c2e63440c5618eb8"],["dist/manifest.230f8baa54449f269df3.js","50a59344c57d288d56f9161368e843a9"],["dist/vendor.2f6a0f4a27c182693fc3.js","3f75b47d6c2a51ebde00c51a507d34a5"]];
+var precacheConfig = [["dist/0.c29a556edb2a248a0b1f.js","0fbf91717511bede3aed55737e3379fe"],["dist/1.a83dfb7fa1f6799b36ee.js","18a63a38ec04c05d2db68e47e2337ce1"],["dist/app.2f18ad050a38ad50b84e.js","a713375dfcd0175e8933d649fbb036aa"],["dist/manifest.e1ccf4b8ed6b9e2c8982.js","ce0046242876d99fff72fc77a986a76d"],["dist/vendor.6f3f407fbbf463b94627.js","d07a1c3df99a482817c8e592c25efafc"]];
 var cacheName = 'sw-precache-v3-weatherapp-' + (self.registration ? self.registration.scope : '');
 
 
@@ -107,6 +107,8 @@ var isPathWhitelisted = function (whitelist, absoluteUrlString) {
 var stripIgnoredUrlParameters = function (originalUrl,
     ignoreUrlParametersMatching) {
     var url = new URL(originalUrl);
+    // Remove the hash; see https://github.com/GoogleChrome/sw-precache/issues/290
+    url.hash = '';
 
     url.search = url.search.slice(1) // Exclude initial '?'
       .split('&') // Split into an array of 'key=value' strings
@@ -212,8 +214,8 @@ self.addEventListener('fetch', function(event) {
     // handlers a chance to handle the request if need be.
     var shouldRespond;
 
-    // First, remove all the ignored parameter and see if we have that URL
-    // in our cache. If so, great! shouldRespond will be true.
+    // First, remove all the ignored parameters and hash fragment, and see if we
+    // have that URL in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
     shouldRespond = urlsToCacheKeys.has(url);
 
