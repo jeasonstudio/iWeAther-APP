@@ -72,8 +72,8 @@
         <swiper ref="swiper" direction="vertical" :paginationVisible="false" :mousewheel-control="true" :performance-mode="false" :pagination-visible="true" :pagination-clickable="true" :loop="false" @slide-change-start="onSlideChangeStart">
             <section class="swiper-roll weather-info">
                 <div id="content" :style="{
-                    'transition':'All 0.4s ease-in-out',
-                    'transform': 'translate(0px, ' + cool.oldLocation + 'px)'}">
+                            'transition':'All 0.4s ease-in-out',
+                            'transform': 'translate(0px, ' + cool.oldLocation + 'px)'}">
                     <div class="main-tmp"><span v-text="now.tmp"></span> ℃</div>
                     <div class="line"></div>
                     <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
@@ -106,6 +106,18 @@
                 </footer>
             </section>
         </swiper>
+        <button class="refresh" v-on:click="startFreshPlay()">
+            <!--<?xml version="1.0" encoding="UTF-8"?>-->
+            <svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+                <title>Path</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="222.56 222.56" stroke-dashoffset="99.42">
+                    <path d="M17,3 C7.5,1.5 -3.5,15 7,26.5 C18,36.5 31.5,26.5 30,16.5 C26,16.5 22.7337186,16.2899602 20.5,14 C18.292338,11.7367524 16.5,9.5 17,3 Z" id="Path" stroke="#339FB7" stroke-width="4"></path>
+                </g>
+            </svg>
+        </button>
     </div>
 </template>
 <script>
@@ -197,6 +209,17 @@ export default {
         },
         formatTime: function (timeString) {
             return Number(timeString.split(' ')[0].split('-')[1]) + '月' + Number(timeString.split(' ')[0].split('-')[2]) + '日'
+        },
+        startFreshPlay: function () {
+            let path = document.querySelector('.refresh path');
+            let length = path.getTotalLength();
+            path.style.transition = path.style.WebkitTransition = 'none';
+            path.style.strokeDasharray = length + ' ' + length;
+            path.style.strokeDashoffset = length;
+
+            path.getBoundingClientRect();
+            path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
+            path.style.strokeDashoffset = '0';
         },
         renderCharts: function () {
             let self = this;
