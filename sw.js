@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["dist/0.709bc77523f59f9e95c1.js","4f2ce7877574aeba5da5aa51248805c2"],["dist/app.64988fa6a63433287bd9.js","408d44cc73e1191140d38f7d4dcf34a5"],["dist/manifest.3ad29171785513ae3a88.js","6ca527c7ceeb2a3c2f63ebcc69704364"],["dist/vendor.6b3bacf9aecf42293198.js","a22c0edc886f60bade94483b1031e006"]];
+var precacheConfig = [["iWeAther-APP/dist/0.709bc77523f59f9e95c1.js","4f2ce7877574aeba5da5aa51248805c2"],["iWeAther-APP/dist/app.64988fa6a63433287bd9.js","408d44cc73e1191140d38f7d4dcf34a5"],["iWeAther-APP/dist/manifest.3ad29171785513ae3a88.js","6ca527c7ceeb2a3c2f63ebcc69704364"],["iWeAther-APP/dist/vendor.6b3bacf9aecf42293198.js","a22c0edc886f60bade94483b1031e006"]];
 var cacheName = 'sw-precache-v3-narkoleptika.github.io-' + (self.registration ? self.registration.scope : '');
 
 
