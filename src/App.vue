@@ -72,9 +72,10 @@
         <swiper ref="swiper" direction="vertical" :paginationVisible="false" :mousewheel-control="true" :performance-mode="false" :pagination-visible="true" :pagination-clickable="true" :loop="false" @slide-change-start="onSlideChangeStart">
             <section class="swiper-roll weather-info">
                 <div id="content" :style="{
-                            'transition':'All 0.4s ease-in-out',
-                            'transform': 'translate(0px, ' + cool.oldLocation + 'px)'}">
-                    <div class="main-tmp"><span v-text="now.tmp"></span> ℃</div>
+                                'transition':'All 0.4s ease-in-out',
+                                'transform': 'translate(0px, ' + cool.oldLocation + 'px)'}">
+                    <div class="main-tmp">
+                        <span v-text="now.tmp"></span> ℃</div>
                     <div class="line"></div>
                     <div class="city-cond" v-text="basic.city + '-' + now.cond.txt"></div>
                 </div>
@@ -85,24 +86,46 @@
                     <div id="tem-chart"></div>
                     <div class="detail-infos">
                         <div class="text-block">
-                            <p><span>数据更新时间:</span><span v-text="basic.update.loc"></span></p>
+                            <p>
+                                <span>数据更新时间:</span>
+                                <span v-text="basic.update.loc"></span>
+                            </p>
                         </div>
                         <div class="text-block">
-                            <p><span>相对湿度:</span><span v-text="now.hum + ' %'"></span></p>
-                            <p><span>体感温度:</span><span v-text="now.fl + ' ℃'"></span></p>
-                            <p><span>降水量:</span><span v-text="now.pcpn + ' mm'"></span></p>
+                            <p>
+                                <span>相对湿度:</span>
+                                <span v-text="now.hum + ' %'"></span>
+                            </p>
+                            <p>
+                                <span>体感温度:</span>
+                                <span v-text="now.fl + ' ℃'"></span>
+                            </p>
+                            <p>
+                                <span>降水量:</span>
+                                <span v-text="now.pcpn + ' mm'"></span>
+                            </p>
                         </div>
                         <div class="text-block">
-                            <p><span>能见度:</span><span v-text="now.vis + ' km'"></span></p>
+                            <p>
+                                <span>能见度:</span>
+                                <span v-text="now.vis + ' km'"></span>
+                            </p>
                         </div>
                         <div class="text-block">
-                            <p><span>风向风力:</span><span v-text="now.wind.dir + now.wind.sc + '级' "></span></p>
-                            <p><span>风速:</span><span v-text="now.wind.spd + ' kmph' "></span></p>
+                            <p>
+                                <span>风向风力:</span>
+                                <span v-text="now.wind.dir + now.wind.sc + '级' "></span>
+                            </p>
+                            <p>
+                                <span>风速:</span>
+                                <span v-text="now.wind.spd + ' kmph' "></span>
+                            </p>
                         </div>
                     </div>
                 </div>
                 <footer>
-                    Copyright &copy; 2015-2017 <a href="https://github.com/jeasonstudio"> JeasonStudio</a>
+                    Copyright &copy; 2015-2017
+                    <a href="https://github.com/jeasonstudio"> JeasonStudio</a>
                 </footer>
             </section>
         </swiper>
@@ -186,7 +209,7 @@ export default {
             }).catch(error => {
                 throw new Error(error);
             })
-            // console.log(self)
+            console.log('GetWeathers')
         },
         calcuTems: function (temArr) {
             let [temMaxs, temMins, xDate] = [[], [], []];
@@ -211,6 +234,10 @@ export default {
             return Number(timeString.split(' ')[0].split('-')[1]) + '月' + Number(timeString.split(' ')[0].split('-')[2]) + '日'
         },
         startFreshPlay: function () {
+            this.svgRun()
+            this.getWeathers()
+        },
+        svgRun: function () {
             let path = document.querySelector('.refresh path');
             let length = path.getTotalLength();
             path.style.transition = path.style.WebkitTransition = 'none';
@@ -250,12 +277,6 @@ export default {
                                 "type": 'solid'
                             }
                         },
-                        // "areaStyle": {
-                        //     "normal": {
-                        //         "color": '#f04134'
-                        //     }
-                        // },
-                        // "smooth": true,
                         "data": self.afterCalculater.maxTmps,
                         "markLine": {
                             "data": [
@@ -272,12 +293,6 @@ export default {
                                 "type": 'solid'
                             }
                         },
-                        // "areaStyle": {
-                        //     "normal": {
-                        //         "color": '#7265e6'
-                        //     }
-                        // },
-                        // "smooth": true,
                         "data": self.afterCalculater.minTmps,
                         "markLine": {
                             "data": [
