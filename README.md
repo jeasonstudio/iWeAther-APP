@@ -34,7 +34,7 @@ first | second | GIF
 
 最开始拿到这个题目，由于不太想使用 AngularJS、VueJS or ReactJS 这三个现成库（框架），但又需要其部分功能，又加上自己一直想实现一个轻量级的 MVVM框架，于是自己写了一个类似 Vue 的 MVVM 框架半成品，详见 [knopper.js](utils/knopper.js)。
 
-目前实现了 k-module, k-click 和 k-repeat 的功能。将来可能会实现 k-if/k-on 等。
+目前实现了 k-module, k-click 和 k-repeat 的功能。将来可能会实现 k-if/k-on 等。（但此项目考虑到种种因素，没有用它，还是用的 VUE）
 
 `knopper.js` 名字是因为在写它的时候正在吃 `knoppers` 饼干，它的主要原理基于 `ES2016 的 Proxy 和 Reflect`。
 
