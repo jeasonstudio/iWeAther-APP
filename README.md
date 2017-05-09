@@ -58,7 +58,7 @@ first | second | GIF
 
  1. 在参考别人的 swiper 基础上二次封装了 vueSwiper 组件，详情请见 [vue-swiper.vue](src/components/vue-swiper.vue)。
 
- 2. 对微交互的重视：比如用 Sketch 绘制了右下角的小按钮 SVG，并添加动画。
+ 2. 对微交互的重视：比如用 Sketch 绘制了右下角的小按钮 SVG，并添加动画。请见 [sketch](src/assets/path.svg.sketch) 文件
 
 ## 开发相关
 
