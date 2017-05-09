@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["./dist/0.709bc77523f59f9e95c1.js","4f2ce7877574aeba5da5aa51248805c2"],["./dist/app.64988fa6a63433287bd9.js","408d44cc73e1191140d38f7d4dcf34a5"],["./dist/manifest.3ad29171785513ae3a88.js","6ca527c7ceeb2a3c2f63ebcc69704364"],["./dist/vendor.6b3bacf9aecf42293198.js","a22c0edc886f60bade94483b1031e006"]];
+var precacheConfig = [["dist/0.709bc77523f59f9e95c1.js","4f2ce7877574aeba5da5aa51248805c2"],["dist/app.e8c1bb8bd95635a93de6.js","e4ca3947d86210bf07f395b2639a9d68"],["dist/manifest.587ea228d05584fc8ebc.js","0524f6f927030aa2d406858e789fa745"],["dist/vendor.6b3bacf9aecf42293198.js","a22c0edc886f60bade94483b1031e006"]];
 var cacheName = 'sw-precache-v3-narkoleptika.github.io-' + (self.registration ? self.registration.scope : '');
 
 
