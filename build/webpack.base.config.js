@@ -8,7 +8,7 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        publicPath: '/dist/',
+        publicPath: '/iWeAther-APP/dist/',
         filename: '[name].[chunkhash].js'
     },
     resolve: {

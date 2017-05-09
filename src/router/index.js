@@ -9,7 +9,7 @@ Vue.use(Router)
 const NotFound = () => System.import('pages/NotFound')
 
 export default new Router({
-    mode: 'history',
+    mode: 'hash',
     scrollBehavior(to, from, savedPosition) {
         let ret = {
             x: 0,

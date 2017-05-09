@@ -20,9 +20,5 @@ router.onReady(() => {
 
 // service worker
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('/iWeAther-APP/sw.js')
 }
-
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('/sw.js')
-// }

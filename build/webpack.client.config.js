@@ -20,6 +20,7 @@ const config = Object.assign({}, base, {
         }),
         new HTMLPlugin({
             template: 'src/index.template.html',
+            filename: '../index.html',
             minify: {
                 collapseWhitespace: true
             }
@@ -30,7 +31,7 @@ const config = Object.assign({}, base, {
 if (process.env.NODE_ENV === 'production') {
     config.plugins.push(
         new SWPrecacheWebpackPlugin({
-            cacheId: 'weatherapp',
+            cacheId: 'iWeAther-APP',
             filename: 'sw.js',
             runtimeCaching: [{
                 urlPattern: '/*',
