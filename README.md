@@ -60,6 +60,12 @@ first | second | GIF
 
  2. 对微交互的重视：比如用 Sketch 绘制了右下角的小按钮 SVG，并添加动画。请见 [sketch](src/assets/path.svg.sketch) 文件
 
+### FECS 代码风格审查通过
+
+基本通过 fecs 的代码审查，请见下图：
+
+![fecs](show/fecs.jpg)
+
 ## 开发相关
 
 ```node
