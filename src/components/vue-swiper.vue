@@ -1,9 +1,9 @@
 <template>
     <div class="swiper" :class="[direction, {'dragging': dragging}]" @touchstart.prevent="_onTouchStart($event)" @mousedown.prevent="_onTouchStart($event)" @wheel="_onWheel">
         <div class="swiper-wrap" ref="swiper-wrap" :style="{
-            'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)',
-            'transition-duration': transitionDuration + 'ms'
-            }" @transitionend="_onTransitionEnd">
+                                    'transform' : 'translate3d(' + translateX + 'px,' + translateY + 'px, 0)',
+                                    'transition-duration': transitionDuration + 'ms'
+                                    }" @transitionend="_onTransitionEnd">
             <slot></slot>
         </div>
         <div class="swiper-pagination" v-show="paginationVisible">
@@ -63,33 +63,33 @@ const HORIZONTAL = 'horizontal';
 export default {
     props: {
         direction: {
-            type: String,
-            default: VERTICAL,
-            validator: (value) => [VERTICAL, HORIZONTAL].indexOf(value) > -1
+            'type': String,
+            'default': VERTICAL,
+            'validator': value => [VERTICAL, HORIZONTAL].indexOf(value) > -1
         },
         mousewheelControl: {
-            type: Boolean,
-            default: true
+            'type': Boolean,
+            'default': true
         },
         performanceMode: {
-            type: Boolean,
-            default: false
+            'type': Boolean,
+            'default': false
         },
         paginationVisible: {
-            type: Boolean,
-            default: false
+            'type': Boolean,
+            'default': false
         },
         paginationClickable: {
-            type: Boolean,
-            default: false
+            'type': Boolean,
+            'default': false
         },
         loop: {
-            type: Boolean,
-            default: false
+            'type': Boolean,
+            'default': false
         },
         speed: {
-            type: Number,
-            default: 500
+            'type': Number,
+            'default': 500
         }
     },
     data() {
@@ -114,7 +114,6 @@ export default {
         this.slideEls = [].map.call(this.$refs['swiper-wrap'].children, el => el);
         if (this.loop) {
             this.$nextTick(function () {
-                console.log(this)
                 this._createLoop();
                 this.setPage(this.currentPage, true);
             });
@@ -124,7 +123,7 @@ export default {
     },
     methods: {
         next() {
-            var page = this.currentPage;
+            let page = this.currentPage;
             if (page < this.slideEls.length || this.loop) {
                 this.setPage(page + 1);
             } else {
@@ -132,7 +131,7 @@ export default {
             }
         },
         prev() {
-            var page = this.currentPage;
+            let page = this.currentPage;
             if (page > 1 || this.loop) {
                 this.setPage(page - 1);
             } else {
@@ -140,7 +139,7 @@ export default {
             }
         },
         setPage(page, noAnimation) {
-            var self = this;
+            let self = this;
             this.lastPage = this.currentPage;
             if (page === 0) {
                 this.currentPage = this.slideEls.length;
@@ -156,12 +155,16 @@ export default {
                 }
                 setTimeout(function () {
                     self._setTranslate(self._getTranslateOfPage(page));
-                    if (noAnimation) return;
+                    if (noAnimation) {
+                        return;
+                    }
                     self._onTransitionStart();
                 }, 0);
             } else {
                 this._setTranslate(this._getTranslateOfPage(page));
-                if (noAnimation) return;
+                if (noAnimation) {
+                    return;
+                }
                 this._onTransitionStart();
             }
         },
@@ -199,7 +202,7 @@ export default {
         _onTouchEnd(e) {
             this.dragging = false;
             this.transitionDuration = this.speed;
-            var isQuickAction = new Date().getTime() - this.startTime < 1000;
+            let isQuickAction = new Date().getTime() - this.startTime < 1000;
             if (this.delta < -100 || (isQuickAction && this.delta < -15)) {
                 this.next();
             } else if (this.delta > 100 || (isQuickAction && this.delta > 15)) {
@@ -215,7 +218,6 @@ export default {
         },
         _onWheel(e) {
             if (this.mousewheelControl) {
-                // TODO Support apple magic mouse and trackpad.
                 if (!this.transitioning) {
                     if (e.deltaY > 0) {
                         this.next();
@@ -223,15 +225,16 @@ export default {
                         this.prev();
                     }
                 }
-                if (this._isPageChanged()) e.preventDefault();
-
+                if (this._isPageChanged()) {
+                    e.preventDefault();
+                }
             }
         },
         _revert() {
             this.setPage(this.currentPage);
         },
         _getTouchPos(e) {
-            var key = this.isHorizontal() ? 'pageX' : 'pageY';
+            let key = this.isHorizontal() ? 'pageX' : 'pageY';
             return e.changedTouches ? e.changedTouches[0][key] : e[key];
         },
         _onTransitionStart() {
@@ -257,26 +260,27 @@ export default {
             return this.lastPage !== this.currentPage;
         },
         _setTranslate(value) {
-            var translateName = this.isHorizontal() ? 'translateX' : 'translateY';
+            let translateName = this.isHorizontal() ? 'translateX' : 'translateY';
             this[translateName] = value;
         },
         _getTranslate() {
-            var translateName = this.isHorizontal() ? 'translateX' : 'translateY';
+            let translateName = this.isHorizontal() ? 'translateX' : 'translateY';
             return this[translateName];
         },
         _getTranslateOfPage(page) {
-            if (page === 0) return 0;
-
-            var propName = this.isHorizontal() ? 'clientWidth' : 'clientHeight';
+            if (page === 0) {
+                return 0;
+            }
+            let propName = this.isHorizontal() ? 'clientWidth' : 'clientHeight';
             return -[].reduce.call(this.slideEls, function (total, el, i) {
                 return i > page - 2 ? total : total + el[propName];
             }, 0) + this.translateOffset;
         },
         _createLoop() {
-            var propName = this.isHorizontal() ? 'clientWidth' : 'clientHeight';
-            var swiperWrapEl = this.$refs['swiper-wrap'];
-            var duplicateFirstChild = swiperWrapEl.firstElementChild.cloneNode(true);
-            var duplicateLastChild = swiperWrapEl.lastElementChild.cloneNode(true);
+            let propName = this.isHorizontal() ? 'clientWidth' : 'clientHeight';
+            let swiperWrapEl = this.$refs['swiper-wrap'];
+            let duplicateFirstChild = swiperWrapEl.firstElementChild.cloneNode(true);
+            let duplicateLastChild = swiperWrapEl.lastElementChild.cloneNode(true);
             swiperWrapEl.insertBefore(duplicateLastChild, swiperWrapEl.firstElementChild);
             swiperWrapEl.appendChild(duplicateFirstChild);
             this.translateOffset = -duplicateLastChild[propName];

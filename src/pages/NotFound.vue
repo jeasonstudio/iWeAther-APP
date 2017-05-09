@@ -8,17 +8,17 @@
     export default {
         name: 'NotFound',
         preFetch() {
-            return this.methods.meta()
+            return this.methods.meta();
         },
         beforeMount() {
-            this.$emit('view', this.meta())
+            this.$emit('view', this.meta());
         },
         methods: {
-            meta: ()=> ({
+            meta: () => ({
                 title: '404 | iWeAther-APP',
                 description: 'The page could not be found',
                 keywords: 'lost, 404, not found'
             })
         }
-    }
+    };
 </script>

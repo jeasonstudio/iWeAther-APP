@@ -1,12 +1,17 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+/**
+ * @file index.js
+ * @author Jeason<me@jeasonstudio.cn>
+ */
 
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+
+Vue.use(Router);
 
 // Codesplit based on route
 // const Home = ()=> System.import('pages/Home')
 // const Test = ()=> System.import('pages/Test')
-const NotFound = () => System.import('pages/NotFound')
+const NotFound = () => System.import('pages/NotFound');
 
 export default new Router({
     mode: 'hash',
@@ -14,19 +19,19 @@ export default new Router({
         let ret = {
             x: 0,
             y: 0
-        }
+        };
         if (to.hash) {
             ret = {
                 selector: to.hash
-            }
+            };
         } else if (savedPosition) {
-            ret = savedPosition
+            ret = savedPosition;
         }
-        return ret
+        return ret;
     },
     routes: [{
         path: '*',
         name: 'NotFound',
         component: NotFound
     }]
-})
+});
