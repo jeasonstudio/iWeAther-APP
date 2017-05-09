@@ -26,7 +26,7 @@
 
 first | second | GIF
 ----- | ------ | ---
-![front](show/front.jpg) | ![end](show/end.jpg) | 
+![front](show/front.jpg) | ![end](show/end.jpg) | GIF 比较大，请戳 [GIF](show/test.gif)
 
 ## 简要说明
 
